@@ -1,10 +1,13 @@
-# Finance Analytics: Interactive Analysis & Tools
+# Projects: Applied Finance
 
-Interactive finance projects from my MSc International Finance at HWR Berlin. Each one is a self-contained web page served with GitHub Pages.
+Applied finance projects from my MSc International Finance at HWR Berlin, covering valuation, macro and sector analysis, and personal-finance modelling.
 
-| Project | What it shows | Methods | Live |
+| Project | What it shows | Methods | Links |
 |---|---|---|---|
-| **[Germany: structural winners, strugglers & finance](germany-structural-analysis/)** | 8 sectors × 6 structural drivers; whether German finance can fund the transition | Structural analysis, risk transmission, peer benchmarking | [Open](https://kartiktyagi0901-ux.github.io/finance-analytics/germany-structural-analysis/) |
-| **[Personal finance dashboard](personal-finance-dashboard/)** | Cash flow → savings rate → compounding projection | Annuity future value, real vs. nominal returns | [Open](https://kartiktyagi0901-ux.github.io/finance-analytics/personal-finance-dashboard/) |
+| **[SpaceX (SPCX) IPO valuation](spacex-ipo-valuation/)** | Whether the $1.75T IPO price is justified: bull vs. bear, scenarios, and the growth the price implies | Relative valuation, scenario & reverse valuation, sensitivity | Code + charts |
+| **[Germany: structural winners, strugglers & finance](germany-structural-analysis/)** | 8 sectors × 6 structural drivers; whether German finance can fund the transition | Structural analysis, risk transmission, peer benchmarking | [Live page](https://kartiktyagi0901-ux.github.io/Projects/germany-structural-analysis/) |
+| **[Personal finance dashboard](personal-finance-dashboard/)** | Cash flow → savings rate → compounding projection | Annuity future value, real vs. nominal returns | [Live demo](https://kartiktyagi0901-ux.github.io/Projects/personal-finance-dashboard/) |
 
-**More projects:** [Flood risk & insurer stock returns (event study)](https://github.com/kartiktyagi0901-ux/Climate-risk-event-study) · [SpaceX IPO valuation](https://github.com/kartiktyagi0901-ux/spacex-ipo-valuation)
+**Also see:** [Flood risk & insurer stock returns, a CAPM event study](https://github.com/kartiktyagi0901-ux/Climate-risk-event-study)
+
+**Tools:** Python (pandas, NumPy, statsmodels, matplotlib), Jupyter, Excel, HTML/JS for interactive analysis.

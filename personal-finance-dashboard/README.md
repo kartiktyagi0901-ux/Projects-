@@ -2,7 +2,7 @@
 
 **A browser-based tool that turns a month of transactions into a savings rate, then shows what that savings rate compounds to over time.**
 
-▶ **Live demo:** https://kartiktyagi0901-ux.github.io/finance-analytics/personal-finance-dashboard/
+▶ **Live demo:** https://kartiktyagi0901-ux.github.io/Projects/personal-finance-dashboard/
 
 ## Features
 
