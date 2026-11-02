@@ -2,7 +2,7 @@
 
 **A browser-based tool that turns a month of transactions into a savings rate, then shows what that savings rate compounds to over time.**
 
-▶ **Live demo:** https://kartiktyagi0901-ux.github.io/portfolio/personal-finance-dashboard/
+▶ **Live demo:** https://kartiktyagi0901-ux.github.io/finance-analytics/personal-finance-dashboard/
 
 ## Features
 
@@ -26,4 +26,4 @@ With the sample data (a 37% savings rate, 6% return, 20 years, 2% inflation), ab
 
 A single HTML file using vanilla JS and Chart.js, with no build step. The data shown is illustrative sample data.
 
-*Part of my MSc International Finance portfolio (HWR Berlin).*
+*Part of my MSc International Finance project work (HWR Berlin).*

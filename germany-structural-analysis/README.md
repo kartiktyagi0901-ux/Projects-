@@ -2,7 +2,7 @@
 
 **An interactive briefing on which German sectors win or lose under six structural forces, and whether the financial system can fund the transition.**
 
-▶ **Live page:** https://kartiktyagi0901-ux.github.io/portfolio/germany-structural-analysis/
+▶ **Live page:** https://kartiktyagi0901-ux.github.io/finance-analytics/germany-structural-analysis/
 
 ## What's inside
 
@@ -24,4 +24,4 @@
 
 A single self-contained HTML/CSS/JS file with no dependencies. Open `index.html` in any browser.
 
-*The scores are qualitative judgements for analytical framing, not econometric estimates. Part of my MSc International Finance portfolio (HWR Berlin).*
+*The scores are qualitative judgements for analytical framing, not econometric estimates. Part of my MSc International Finance project work (HWR Berlin).*
