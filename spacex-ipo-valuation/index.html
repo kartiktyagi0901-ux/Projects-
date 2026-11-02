@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SpaceX (SPCX) IPO: Bubble or Justified? | Valuation</title>
+<style>
+:root{--bg:#000;--panel:#0d0f12;--panel2:#15181d;--line:#262a31;--text:#f2f4f7;--muted:#A7A9AC;--blue:#005288;--blue2:#2b8cd1;--red:#d0473f;--green:#2fa37a;--amber:#e3a33b;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;line-height:1.55}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+header{padding:52px 0 34px;border-bottom:1px solid var(--line)}
+.tag{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:clamp(28px,4.5vw,46px);letter-spacing:-.01em;line-height:1.1;margin:12px 0}
+h1 span{color:var(--blue2)}
+.lede{color:#c9ccd1;max-width:760px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:28px}
+.kpi{background:var(--panel);padding:14px 16px}.kpi b{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.kpi span{font-family:var(--mono);font-size:20px;font-weight:700}
+nav{position:sticky;top:0;z-index:5;background:rgba(0,0,0,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;overflow-x:auto}
+nav button{background:none;border:0;color:var(--muted);font:600 14px inherit;font-family:inherit;padding:14px 16px;border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap}
+nav button.active{color:#fff;border-color:var(--blue2)}
+main{padding:30px 0 60px}
+.panel{display:none}.panel.active{display:block}
+h2{font-size:22px;margin-bottom:6px}.sub{color:var(--muted);margin-bottom:20px;max-width:800px}
+h3{font-size:15px;margin:24px 0 10px;color:#dfe2e6}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:800px){.grid2{grid-template-columns:1fr}}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:10px 10px;border-bottom:1px solid var(--line);text-align:right}
+th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+td:first-child,th:first-child{text-align:left}
+td{font-family:var(--mono)}td:first-child{font-family:inherit}
+.neg{color:var(--red)}.pos{color:var(--green)}
+.bars{display:flex;align-items:flex-end;gap:28px;height:260px;padding:10px 10px 0;position:relative;border-bottom:1px solid var(--line)}
+.bar{flex:1;border-radius:6px 6px 0 0;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;color:#fff;font-weight:700;font-family:var(--mono);padding-top:10px;text-align:center;font-size:14px;transition:height .4s}
+.bar small{display:block;margin-top:2px;font-weight:500;opacity:.85}
+.offer{position:absolute;left:0;right:0;border-top:1.5px dashed #fff;opacity:.7}
+.offer span{position:absolute;left:4px;top:-20px;font-size:12px;color:#fff;font-family:var(--mono)}
+.blbl{display:flex;gap:28px;padding:8px 10px 0;color:var(--muted);font-size:13px}.blbl div{flex:1;text-align:center}
+.ctrl{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:18px}
+.ctrl label{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:6px}.ctrl b{color:#fff;font-family:var(--mono)}
+input[type=range]{width:100%;accent-color:var(--blue2)}
+.out{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.o{background:var(--panel2);border-radius:10px;padding:14px 16px}.o b{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:4px}
+.o span{font-family:var(--mono);font-size:22px;font-weight:700}
+.gauge{margin-top:18px}.gtrack{position:relative;height:14px;border-radius:7px;background:linear-gradient(90deg,var(--green),var(--amber) 45%,var(--red));}
+.gmark{position:absolute;top:-6px;width:3px;height:26px;background:#fff;border-radius:2px;transition:left .3s}
+.gmark span{position:absolute;top:28px;left:50%;transform:translateX(-50%);font-size:11px;white-space:nowrap;font-family:var(--mono);color:#fff}
+.gref{position:absolute;top:-4px;width:2px;height:22px;background:#000;opacity:.6}
+.gref span{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-size:11px;white-space:nowrap;color:var(--muted)}
+.heat td{text-align:center;font-weight:700;color:#111}.heat th{text-align:center}
+.heat td.sel{outline:2px solid #fff;outline-offset:-2px}
+ul.case{list-style:none}ul.case li{padding:10px 0 10px 18px;border-bottom:1px solid var(--line);position:relative;font-size:14px;color:#d5d8dc}
+ul.case li:before{content:"";position:absolute;left:0;top:17px;width:8px;height:8px;border-radius:2px;background:var(--c)}
+ul.case li b{color:#fff}
+.verdict{border-left:4px solid var(--blue2);background:#081521;border-radius:8px;padding:16px 18px;margin-top:20px}
+.cal{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:10px}
+.note{font-size:12px;color:var(--muted);margin-top:12px}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:12px;padding:20px 0 30px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="tag">Equity valuation · IPO priced 12 June 2026 · Nasdaq: SPCX</div>
+  <h1>SpaceX IPO: <span>bubble or justified?</span></h1>
+  <p class="lede">A quantified bull/bear assessment of the largest IPO in history. It covers what the $135 offer price implies, how it compares with independent fair-value work, and how much growth the market is pricing in.</p>
+  <div class="kpis">
+    <div class="kpi"><b>Offer price</b><span>$135</span></div>
+    <div class="kpi"><b>Valuation</b><span>$1.75T</span></div>
+    <div class="kpi"><b>Raised</b><span>~$75bn</span></div>
+    <div class="kpi"><b>EV / Sales '25</b><span>~94x</span></div>
+    <div class="kpi"><b>EV / EBITDA '25</b><span>~266x</span></div>
+    <div class="kpi"><b>Q1'26 growth</b><span>+15%</span></div>
+  </div>
+</div></header>
+
+<nav><div class="wrap">
+  <button class="active" data-t="snap">Snapshot</button>
+  <button data-t="scen">Scenarios</button>
+  <button data-t="rev">Reverse valuation</button>
+  <button data-t="case">Bull vs. bear</button>
+  <button data-t="verd">Verdict & catalysts</button>
+</div></nav>
+
+<main class="wrap">
+<!-- SNAPSHOT -->
+<section class="panel active" id="snap">
+  <h2>Company & IPO snapshot</h2>
+  <p class="sub">Inputs from the S-1 filing and reporting around the pricing date.</p>
+  <div class="grid2">
+    <div class="card"><h3 style="margin-top:0">Key financials</h3>
+      <table><tr><th>$bn</th><th>2024</th><th>2025</th><th>2026E</th></tr>
+      <tr><td>Revenue</td><td>14.1</td><td>18.7</td><td>~22.0</td></tr>
+      <tr><td>Growth</td><td>–</td><td class="pos">+33%</td><td style="color:var(--amber)">~+18%</td></tr>
+      <tr><td>EBITDA</td><td>–</td><td>6.58</td><td>–</td></tr>
+      <tr><td>Net income</td><td>–</td><td class="neg">−4.9</td><td>–</td></tr></table>
+      <h3>Segment mix (latest quarter)</h3>
+      <div id="mix"></div>
+    </div>
+    <div class="card"><h3 style="margin-top:0">IPO details</h3>
+      <table>
+      <tr><td>Shares sold</td><td>556.6m</td></tr>
+      <tr><td>Proceeds</td><td>~$75bn (≈3× Saudi Aramco)</td></tr>
+      <tr><td>Retail allocation</td><td>~30%</td></tr>
+      <tr><td>Musk voting control</td><td>~85%</td></tr>
+      <tr><td>Nasdaq-100 inclusion</td><td>~15 days post-listing</td></tr>
+      <tr><td>Est. index-driven buying</td><td>$22–27bn</td></tr>
+      <tr><td>Contracted AI compute</td><td>≈$26bn / year</td></tr></table>
+      <p class="note">AI compute contracts: Anthropic $1.25bn/month through May 2029; Google $920m/month for 32 months.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SCENARIOS -->
+<section class="panel" id="scen">
+  <h2>Scenario valuation</h2>
+  <p class="sub">Independent fair-value work against the offer price. The asymmetry is the key point: the downside to fair value is about 4× the upside to the optimistic case.</p>
+  <div class="grid2">
+    <div class="card">
+      <div class="bars" id="bars"></div>
+      <div class="blbl"><div>Bear</div><div>Base</div><div>Bull</div></div>
+    </div>
+    <div class="card">
+      <table id="scenT"></table>
+      <h3>Street long-horizon views</h3>
+      <table><tr><th>Forecast</th><th>2030 rev.</th><th>Implied CAGR</th><th>Cap / 2030 rev.</th></tr>
+      <tr><td>Morgan Stanley</td><td>$330bn</td><td>77.6%</td><td>5.3x</td></tr>
+      <tr><td>Goldman Sachs</td><td>$470bn</td><td>90.6%</td><td>3.7x</td></tr></table>
+      <p class="note">Implied equity value = $/share × ~12.96bn shares (offer value ÷ offer price). Published fair-value caps may use a different diluted count.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REVERSE -->
+<section class="panel" id="rev">
+  <h2>Reverse valuation: what growth is priced in?</h2>
+  <p class="sub">With no profit history, forecasting cash flows is mostly guesswork. Instead, this asks what 2030 revenue SpaceX needs for an investor buying at $1.75T to earn the cost of equity, given an exit EV/Sales multiple. Adjust the assumptions below.</p>
+  <div class="card">
+    <div class="ctrl">
+      <div><label>Exit EV/Sales multiple <b id="mV"></b></label><input type="range" id="m" min="3" max="30" step="1" value="10"></div>
+      <div><label>Cost of equity <b id="rV"></b></label><input type="range" id="r" min="6" max="16" step="0.5" value="11"></div>
+      <div><label>Holding period (years) <b id="yV"></b></label><input type="range" id="y" min="2" max="8" step="1" value="4"></div>
+    </div>
+    <div class="out">
+      <div class="o"><b>Required value at exit</b><span id="fv"></span></div>
+      <div class="o"><b>Required revenue at exit</b><span id="rr"></span></div>
+      <div class="o"><b>Required revenue CAGR (from 2025)</b><span id="cg"></span></div>
+      <div class="o"><b>vs. latest growth (15%)</b><span id="mult"></span></div>
+    </div>
+    <div class="gauge"><div class="gtrack" id="gt">
+      <div class="gref" style="left:15%"><span>Q1'26: 15%</span></div>
+      <div class="gref" style="left:33%"><span>2025: 33%</span></div>
+      <div class="gmark" id="gm"><span></span></div>
+    </div></div>
+    <p class="note" style="margin-top:34px">Required value = $1.75T × (1 + k)<sup>n</sup>. Required revenue = value ÷ exit multiple. CAGR is measured from 2025 revenue of $18.7bn over n + 1 years. Ignores net cash, dilution and dividends, and treats EV ≈ equity value.</p>
+  </div>
+  <h3>Sensitivity: required revenue CAGR, 2025–30 (4-year hold)</h3>
+  <div class="card" style="overflow-x:auto"><table class="heat" id="heat"></table></div>
+</section>
+
+<!-- CASES -->
+<section class="panel" id="case">
+  <h2>Bull vs. bear</h2>
+  <p class="sub">Both cases argued with numbers.</p>
+  <div class="grid2">
+    <div class="card"><h3 style="margin-top:0;color:var(--red)">Bear: a bubble at $135</h3>
+      <ul class="case" style="--c:var(--red)">
+        <li><b>Unprecedented multiples:</b> ~94x sales and ~266x EBITDA, more than Palantir (~79x) despite growing far slower.</li>
+        <li><b>Decelerating growth:</b> +33% in 2025 slowed to +15% YoY in Q1 2026.</li>
+        <li><b>One profitable segment:</b> Starlink (~69% of revenue) subsidises Space (−$619m quarterly operating loss) and xAI (−$6.35bn FY25).</li>
+        <li><b>Fair value far below the offer:</b> Morningstar puts it at $63 (−53%) with a Very High uncertainty rating.</li>
+        <li><b>Circular AI economics:</b> AI labs' compute commitments look like the sector's vendor-financing loops.</li>
+        <li><b>Governance:</b> ~85% voting control and a key-person dependency on one founder.</li>
+      </ul></div>
+    <div class="card"><h3 style="margin-top:0;color:var(--green)">Bull: the banks' numbers can work</h3>
+      <ul class="case" style="--c:var(--green)">
+        <li><b>Starlink compounding:</b> adjusted EBITDA +86% YoY, with subscribers doubling to 9m+.</li>
+        <li><b>A launch monopoly:</b> 165 Falcon 9 launches in 2025, more than the rest of the world combined.</li>
+        <li><b>The multiple compresses fast:</b> on MS and GS 2030 revenue it's 5.3x and 3.7x sales, Microsoft-like multiples.</li>
+        <li><b>Contracted revenue:</b> ~$26bn a year of AI compute backlog, more than the entire 2025 top line.</li>
+        <li><b>Technical demand:</b> Nasdaq-100 inclusion adds $22–27bn of forced buying on a thin float.</li>
+        <li><b>Optionality:</b> Starship reusability and orbital data centres are not in the base numbers.</li>
+      </ul></div>
+  </div>
+</section>
+
+<!-- VERDICT -->
+<section class="panel" id="verd">
+  <h2>Verdict</h2>
+  <div class="verdict"><b>The company is exceptional, but the price leaves no margin of safety.</b> At $135 the market pays today for three frontier bets succeeding together: Starship reusability, Starlink saturation and orbital AI infrastructure. Even with a generous 20x exit multiple, the price needs about 46–50% annual revenue growth for five years, three times the latest growth rate. Risk/reward at the offer is skewed to the downside: about −53% to independent fair value against +14% to the optimistic case.</div>
+  <h3>Catalysts to watch</h3>
+  <div class="cal">
+    <div class="o"><b>Early July 2026</b>Nasdaq-100 rebalance: watch for artificial strength from index buying</div>
+    <div class="o"><b>First earnings print</b>Is Q1's 15% growth a blip or the new trend? This is the most important number for the valuation</div>
+    <div class="o"><b>Starship milestones</b>Reusability is the key to launch-cost economics (Morningstar: not before ~2028)</div>
+    <div class="o"><b>xAI losses</b>The path to break-even decides whether Starlink keeps funding the rest of the group</div>
+  </div>
+  <p class="note">Educational analysis, not investment advice. Sources: SpaceX S-1; Morningstar; Morgan Stanley, Goldman Sachs and ARK Invest forecasts as reported by Reuters and CNBC (June 2026). Python model: <a href="https://github.com/kartiktyagi0901-ux/Projects-/tree/main/spacex-ipo-valuation" style="color:var(--blue2)">valuation_model.py</a>.</p>
+</section>
+</main>
+<footer><div class="wrap">Kartik Tyagi · MSc International Finance, HWR Berlin · <a href="https://www.linkedin.com/in/kartiktyagi9/" style="color:var(--muted)">LinkedIn</a></div></footer>
+
+<script>
+const $=id=>document.getElementById(id);
+const CAP=1.75e12, REV25=18.7e9, OFFER=135, SH=CAP/OFFER;
+// segment mix
+$('mix').innerHTML=[['Starlink',69,'#2b8cd1'],['Launch / Space',26,'#A7A9AC'],['AI / other',5,'#e3a33b']].map(([n,p,c])=>
+ `<div style="display:flex;align-items:center;gap:10px;margin:7px 0;font-size:13px"><span style="width:110px;color:#c9ccd1">${n}</span><div style="flex:1;background:#15181d;border-radius:4px;height:14px"><div style="width:${p}%;height:100%;background:${c};border-radius:4px"></div></div><span style="font-family:var(--mono);width:36px;text-align:right">${p}%</span></div>`).join('');
+// scenarios
+const S=[['Bear · Morningstar FV',63,'var(--red)'],['Base · IPO price',135,'var(--blue)'],['Bull · Morningstar upside',154,'var(--green)']];
+const max=170;
+$('bars').innerHTML=S.map(([n,v,c])=>`<div class="bar" style="height:${v/max*100}%;background:${c}">$${v}<small>${v===OFFER?'±0%':((v/OFFER-1)*100>0?'+':'')+Math.round((v/OFFER-1)*100)+'%'}</small></div>`).join('')+`<div class="offer" style="bottom:${OFFER/max*100}%"><span>Offer $135</span></div>`;
+$('scenT').innerHTML='<tr><th>Scenario</th><th>$/share</th><th>vs. offer</th><th>Equity value</th><th>EV/Sales</th></tr>'+S.map(([n,v])=>{const cap=v*SH,ch=(v/OFFER-1)*100;
+ return `<tr><td>${n}</td><td>${v}</td><td class="${ch<0?'neg':ch>0?'pos':''}">${ch>0?'+':''}${ch.toFixed(1)}%</td><td>$${(cap/1e12).toFixed(2)}T</td><td>${(cap/REV25).toFixed(1)}x</td></tr>`}).join('');
+// reverse valuation
+function calc(m,k,n){const fv=CAP*Math.pow(1+k,n),rev=fv/m,cagr=Math.pow(rev/REV25,1/(n+1))-1;return{fv,rev,cagr}}
+function upd(){const m=+$('m').value,k=+$('r').value/100,n=+$('y').value;
+ $('mV').textContent=m+'x';$('rV').textContent=(k*100).toFixed(1)+'%';$('yV').textContent=n;
+ const {fv,rev,cagr}=calc(m,k,n);
+ $('fv').textContent='$'+(fv/1e12).toFixed(2)+'T';$('rr').textContent='$'+Math.round(rev/1e9)+'bn';
+ $('cg').textContent=(cagr*100).toFixed(1)+'%';$('cg').style.color=cagr>.5?'var(--red)':cagr>.3?'var(--amber)':'var(--green)';
+ $('mult').textContent=(cagr/.15).toFixed(1)+'×';
+ const pos=Math.min(cagr*100,100);$('gm').style.left=`calc(${pos}% - 1px)`;$('gm').querySelector('span').textContent='needed: '+(cagr*100).toFixed(0)+'%';
+ document.querySelectorAll('.heat td[data-m]').forEach(td=>td.classList.toggle('sel',+td.dataset.m===m&&+td.dataset.k===k*100&&n===4));}
+['m','r','y'].forEach(id=>$(id).addEventListener('input',upd));
+// heatmap
+const MS=[5,8,10,15,20],KS=[9,11,13];
+const col=v=>{const t=Math.max(0,Math.min(1,(v-15)/75));return `hsl(${130-130*t},55%,${62-10*t}%)`};
+$('heat').innerHTML='<tr><th style="width:34%">Exit EV/Sales ↓ · cost of equity →</th>'+KS.map(k=>`<th>${k}%</th>`).join('')+'</tr>'+
+ MS.map(m=>`<tr><td style="color:#fff;text-align:left">${m}x</td>`+KS.map(k=>{const c=calc(m,k/100,4).cagr*100;return `<td data-m="${m}" data-k="${k}" style="background:${col(c)}">${c.toFixed(0)}%</td>`}).join('')+'</tr>').join('');
+upd();
+// tabs
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('nav button,.panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');$(b.dataset.t).classList.add('active');window.scrollTo({top:document.querySelector('nav').offsetTop,behavior:'smooth'})});
+</script>
+</body>
+</html>

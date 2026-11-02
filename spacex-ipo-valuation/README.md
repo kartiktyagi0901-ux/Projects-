@@ -2,6 +2,8 @@
 
 **A quantified bull/bear valuation of the largest IPO in history, priced 12 June 2026**
 
+▶ **Live interactive page:** https://kartiktyagi0901-ux.github.io/Projects-/spacex-ipo-valuation/ (scenarios, a reverse-valuation calculator with sliders, bull vs. bear, catalysts)
+
 ![Scenarios](charts/scenarios.png)
 
 ## The question
@@ -64,6 +66,7 @@ Instead of forecasting cash flows for a company with no profit history, the mode
 
 | File | Contents |
 |---|---|
+| `index.html` | Interactive web version (GitHub Pages) |
 | `valuation_model.py` | Inputs, scenario table, Street forward multiples, reverse-valuation grid, charts |
 | `results.md` | Full model output |
 | `charts/` | Generated charts |
