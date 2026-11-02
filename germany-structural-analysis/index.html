@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Germany: Structural Winners, Strugglers & the Financial Sector</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#14212b;--muted:#5b6b77;--line:#dde3e8;--navy:#0b2a3a;--accent:#12658f;
+--pos2:#1e7a55;--pos1:#7cc4a2;--neu:#e9edf0;--neg1:#eba9a0;--neg2:#b23a3a;--amber:#d98a1f}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+header{background:var(--navy);color:#fff;padding:48px 24px 36px}
+header .wrap,main{max-width:1080px;margin:0 auto}
+.tag{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#9fc3d6}
+h1{font-size:clamp(26px,4vw,40px);line-height:1.15;margin:10px 0 12px}
+header p{color:#c9d8e1;max-width:720px}
+.kpis{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.kpi{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:10px 14px;min-width:150px}
+.kpi b{display:block;font-size:13px;color:#9fc3d6;font-weight:600}.kpi span{font-weight:700}
+nav{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--line)}
+nav .wrap{max-width:1080px;margin:0 auto;display:flex;overflow-x:auto}
+nav button{border:0;background:none;padding:14px 16px;font:600 14px inherit;font-family:inherit;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}
+nav button.active{color:var(--accent);border-color:var(--accent)}
+main{padding:28px 24px 60px}
+.panel{display:none}.panel.active{display:block}
+h2{font-size:22px;margin-bottom:6px}.sub{color:var(--muted);margin-bottom:20px;max-width:780px}
+h3{font-size:16px;margin:26px 0 10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px}
+.card h4{font-size:16px;margin-bottom:4px}
+.firms{font-size:12px;color:var(--accent);font-weight:600;margin-bottom:8px}
+.card p{font-size:14px;color:#33434f}
+.pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;margin-top:10px}
+.p-win{background:#dff1e8;color:var(--pos2)}.p-lose{background:#f7e0dd;color:var(--neg2)}.p-mix{background:#fbecd5;color:#9a5b08}
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:14px}
+th,td{padding:10px 8px;text-align:center;border-bottom:1px solid var(--line)}
+th{background:#eef2f5;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+td:first-child,th:first-child{text-align:left;font-weight:600;padding-left:14px}
+.c{width:34px;height:26px;border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;cursor:default}
+.s2{background:var(--pos2);color:#fff}.s1{background:var(--pos1)}.s0{background:var(--neu);color:#8a98a3}.sm1{background:var(--neg1)}.sm2{background:var(--neg2);color:#fff}
+.net{font-weight:800}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin:10px 0 0}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.tablewrap{overflow-x:auto}
+#detail{margin-top:12px;min-height:48px;font-size:14px;background:#fff;border:1px dashed var(--line);border-radius:8px;padding:12px 14px;color:#33434f}
+.chain{display:flex;align-items:stretch;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.node{flex:1;min-width:200px;background:#fff;border:1px solid var(--line);border-left:4px solid;border-radius:8px;padding:10px 12px;font-size:13px}
+.node b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
+.n-t{border-left-color:var(--neg2)}.n-t b{color:var(--neg2)}.n-x{border-left-color:var(--amber)}.n-x b{color:var(--amber)}.n-m{border-left-color:var(--pos2)}.n-m b{color:var(--pos2)}
+.arrow{align-self:center;color:var(--muted);font-weight:700}
+.bar{display:flex;align-items:center;gap:10px;margin:8px 0;font-size:14px}
+.bar .lbl{width:210px;flex-shrink:0}.bar .trk{flex:1;display:flex;gap:4px}
+.bar .seg{height:18px;border-radius:3px;flex:1}
+.callout{background:#e8f2f7;border-left:4px solid var(--accent);border-radius:6px;padding:14px 16px;margin-top:22px;font-size:15px}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:24px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="tag">Germany · Structural economic analysis</div>
+  <h1>Winners, Strugglers & the Financial Sector</h1>
+  <p>Which German sectors are winning or losing as six structural forces collide, which firms show it, what could change over the next 5–10 years, and whether the financial sector is strong enough to fund the transition.</p>
+  <div class="kpis">
+    <div class="kpi"><b>Framework</b><span>6 structural drivers</span></div>
+    <div class="kpi"><b>Coverage</b><span>8 sectors · 20+ firms</span></div>
+    <div class="kpi"><b>Horizon</b><span>Today → 5–10 years</span></div>
+    <div class="kpi"><b>Core finding</b><span>Stable finance, shallow capital markets</span></div>
+  </div>
+</div></header>
+
+<nav><div class="wrap">
+  <button class="active" data-t="matrix">Driver matrix</button>
+  <button data-t="sectors">Winners & strugglers</button>
+  <button data-t="outlook">5–10 year outlook</button>
+  <button data-t="finance">Financial sector</button>
+  <button data-t="risks">Risk transmission</button>
+</div></nav>
+
+<main>
+<!-- MATRIX -->
+<section class="panel active" id="matrix">
+  <h2>How each structural driver hits each sector</h2>
+  <p class="sub">A qualitative scoring from −2 (strong headwind) to +2 (strong tailwind). The net score ranks the sectors. Click any cell for the reasoning.</p>
+  <div class="tablewrap"><table id="mtx"></table></div>
+  <div class="legend">
+    <span><i class="c s2">+2</i>strong tailwind</span><span><i class="c s1">+1</i>tailwind</span><span><i class="c s0">0</i>neutral</span><span><i class="c sm1">−1</i>headwind</span><span><i class="c sm2">−2</i>strong headwind</span>
+  </div>
+  <div id="detail">Click a cell to see why that driver helps or hurts the sector.</div>
+</section>
+
+<!-- SECTORS -->
+<section class="panel" id="sectors">
+  <h2>Winners</h2>
+  <p class="sub">Sectors where the structural forces create demand that cannot be offshored or substituted.</p>
+  <div class="grid">
+    <div class="card"><h4>Renewable energy & grid infrastructure</h4><div class="firms">Siemens Energy · RWE</div><p>The green transition is the strongest source of new demand. The grid has to be physically rebuilt for distributed generation, and that work cannot be offshored. RWE moved from stranded-asset candidate to one of Europe's largest clean-power investors.</p><span class="pill p-win">Winner</span></div>
+    <div class="card"><h4>Defence & dual-use technology</h4><div class="firms">Rheinmetall</div><p>The 2022 geopolitical break locked in the 2% of GDP NATO target. Order books have expanded and new plants are being built. Production is capital-intensive rather than labour-intensive, so the demographic squeeze matters less here.</p><span class="pill p-win">Winner</span></div>
+    <div class="card"><h4>B2B software & industrial automation</h4><div class="firms">SAP · Kuka · Mittelstand integrators</div><p>Rising wages and a shrinking workforce strengthen the case for automation every year. SAP benefits from the shift to cloud ERP, and Mittelstand machine builders are adding digital services to their hardware.</p><span class="pill p-win">Winner</span></div>
+    <div class="card"><h4>Health & care</h4><div class="firms">Fresenius · FMC · Munich & Rhine-Main biotech</div><p>Germany is ageing faster than almost any large economy, so demand volume is close to guaranteed. Pricing power is capped by regulation and state reimbursement.</p><span class="pill p-win">Winner (capped margins)</span></div>
+  </div>
+  <h3>Strugglers</h3>
+  <div class="grid">
+    <div class="card"><h4>Automotive OEMs & Tier-1 suppliers</h4><div class="firms">Volkswagen · BMW · Mercedes-Benz · Continental · ZF</div><p>An existential platform shift to EVs while Chinese rivals (BYD, NIO, Xiaomi) build at lower cost with faster software cycles. Supplier product lines are becoming obsolete, which makes the job cuts structural, not cyclical.</p><span class="pill p-lose">Struggler</span></div>
+    <div class="card"><h4>Chemicals</h4><div class="firms">BASF</div><p>The business model relied on cheap Russian pipeline gas, and that ended in 2022. BASF is hedging with its Zhanjiang Verbund site in China while shrinking its German footprint.</p><span class="pill p-lose">Struggler</span></div>
+    <div class="card"><h4>Construction & residential real estate</h4><div class="firms">Vonovia · Instone</div><p>Higher rates broke the financing model, retrofit rules add cost, and permitting is slow. A shrinking pool of skilled trades limits supply even where demand exists. Vonovia sold assets to repair its balance sheet.</p><span class="pill p-lose">Struggler</span></div>
+    <div class="card"><h4>Physical retail</h4><div class="firms">Galeria Karstadt Kaufhof · vs. Zalando, Amazon</div><p>German consumers have moved online faster than their cash-loving reputation suggests. Galeria has gone through repeated insolvencies, and smaller retailers lack the logistics to compete.</p><span class="pill p-lose">Struggler</span></div>
+  </div>
+</section>
+
+<!-- OUTLOOK -->
+<section class="panel" id="outlook">
+  <h2>Could today's losers become tomorrow's winners?</h2>
+  <p class="sub">These rankings are not permanent. RWE already shows a structural loser turning around. These are the conditional paths for the next 5–10 years.</p>
+  <div class="grid">
+    <div class="card"><h4>Automotive → software-defined mobility?</h4><p><b>Condition:</b> the OEMs build software as a core competence instead of outsourcing it, and scale EV platforms profitably. <b>If yes:</b> the brands, engineering depth and premium pricing give them a path back. <b>If no:</b> long-term share loss to Chinese OEMs.</p><span class="pill p-mix">Conditional turnaround</span></div>
+    <div class="card"><h4>Chemicals → green chemistry?</h4><p><b>Condition:</b> abundant, cheap renewable electricity and green hydrogen arrive at scale. <b>If yes:</b> the integrated Verbund model becomes competitive again. Until then, the period of pain is long and deep.</p><span class="pill p-mix">Conditional turnaround</span></div>
+    <div class="card"><h4>Construction → retrofit & rate relief</h4><p>Falling rates and simpler permitting would release pent-up housing demand, and energy retrofits become a large order backlog. Labour supply remains the binding constraint.</p><span class="pill p-mix">Cyclical recovery likely</span></div>
+    <div class="card"><h4>Winners at risk</h4><p><b>Renewables:</b> permitting and grid bottlenecks can delay revenue. <b>Defence:</b> exposed to political budget cycles. <b>Health:</b> exposed to reimbursement reform. A tailwind does not guarantee returns if execution and pricing slip.</p><span class="pill p-mix">Watch list</span></div>
+  </div>
+</section>
+
+<!-- FINANCE -->
+<section class="panel" id="finance">
+  <h2>Financial services: fortress or fault line?</h2>
+  <p class="sub">With political instability, volatile FX and uncertain rates, how strong is Germany's financial backbone?</p>
+  <div class="grid">
+    <div class="card"><h4>Banking</h4><div class="firms">Deutsche Bank · Commerzbank · Sparkassen & cooperatives · KfW</div><p>Deutsche Bank is recovering, and Commerzbank is in play as a takeover target. The three-pillar system has no single point of failure, and the Sparkassen lend counter-cyclically. Higher rates gave margins relief but did not fix them.</p><span class="pill p-mix">Mixed</span></div>
+    <div class="card"><h4>Insurance & reinsurance</h4><div class="firms">Allianz · Munich Re · Hannover Re</div><p>A world-class engine for absorbing risk. Volatility raises reinsurance pricing, so the sector profits from it. Germany is a net exporter of financial stability.</p><span class="pill p-win">Winner</span></div>
+    <div class="card"><h4>Asset management & market infrastructure</h4><div class="firms">DWS · Deutsche Börse</div><p>Strong infrastructure, but a domestic investor base that is underweight equities. Asset management is underpowered relative to the size of the economy.</p><span class="pill p-mix">Mixed</span></div>
+    <div class="card"><h4>FinTech</h4><div class="firms">Trade Republic · Scalable Capital · N26</div><p>Low-cost brokers are bringing young savers into equities and starting to close the <i>Aktienkultur</i> gap. N26 shows how much regulatory scrutiny a fast-growing neobank attracts.</p><span class="pill p-win">Rising</span></div>
+  </div>
+  <h3>Germany vs. global peers (qualitative, 1–5)</h3>
+  <div id="peers"></div>
+  <div class="callout"><b>Verdict.</b> Germany has the right <i>type</i> of financial strength (stability, risk absorption, development banking through KfW) but not yet the capital-market <i>firepower</i> to fund the green transition, rearmament and digitalisation at the same time. The Aktienrente pension reform, the retail-investing boom and EU Capital Markets Union all point in the right direction. The open question is whether they arrive before the financing gap starts to constrain growth.</div>
+</section>
+
+<!-- RISKS -->
+<section class="panel" id="risks">
+  <h2>Risk transmission chains</h2>
+  <p class="sub">How a shock would travel through the German financial system, and what dampens it.</p>
+  <h3>1 · Commercial real estate stress</h3>
+  <div class="chain"><div class="node n-t"><b>Trigger</b>Rates stay higher for longer; office and residential valuations reset</div><div class="arrow">→</div><div class="node n-x"><b>Transmission</b>Losses at real-estate lenders and Pfandbrief banks; landlords sell assets</div><div class="arrow">→</div><div class="node n-m"><b>Mitigation</b>Diversified three-pillar system; exposures are concentrated, not systemic</div></div>
+  <h3>2 · China exposure</h3>
+  <div class="chain"><div class="node n-t"><b>Trigger</b>Trade conflict or a sharp Chinese slowdown</div><div class="arrow">→</div><div class="node n-x"><b>Transmission</b>Earnings hit at exporters (autos, chemicals) feeds into corporate credit quality</div><div class="arrow">→</div><div class="node n-m"><b>Mitigation</b>Strong corporate balance sheets; KfW support programmes</div></div>
+  <h3>3 · Equity-culture gap → innovation underfunding</h3>
+  <div class="chain"><div class="node n-t"><b>Trigger</b>Thin venture capital and a low share of household wealth in equities</div><div class="arrow">→</div><div class="node n-x"><b>Transmission</b>Scale-ups list or relocate abroad; the transition stays dependent on bank lending</div><div class="arrow">→</div><div class="node n-m"><b>Mitigation</b>Aktienrente, Trade Republic-style brokers, EU Capital Markets Union</div></div>
+  <h3>4 · Cyber & operational risk</h3>
+  <div class="chain"><div class="node n-t"><b>Trigger</b>A state-sponsored attack on banking infrastructure</div><div class="arrow">→</div><div class="node n-x"><b>Transmission</b>Payment disruption; the Sparkassen's fragmented IT is especially exposed</div><div class="arrow">→</div><div class="node n-m"><b>Mitigation</b>The EU's DORA regulation and BaFin oversight; a gap remains</div></div>
+</section>
+</main>
+<footer>Kartik Tyagi · MSc International Finance, HWR Berlin · Qualitative analysis for educational purposes</footer>
+
+<script>
+const drivers=["Digitalisation","Green transition","Demographics","Bureaucracy","Infrastructure","Fiscal & rates"];
+const M=[
+ ["Renewables & grid",[1,2,-1,-1,2,1],["Smart grids and digital grid management","The core demand engine: grid rebuild and offshore wind","Shortage of skilled electricians and engineers","Slow permitting delays projects","Grid modernisation is a direct order pipeline","Public investment and support schemes"]],
+ ["Defence",[1,0,0,-1,0,2],["Dual-use tech, drones and electronics","Largely neutral","Capital-intensive, so less exposed to labour scarcity","Procurement processes are slow","Neutral","2% of GDP NATO target and the special fund"]],
+ ["Software & automation",[2,1,2,0,0,0],["Cloud ERP and digital services on top of hardware","Efficiency and energy-optimisation software","A shrinking workforce makes automation more valuable every year","Neutral","Neutral","Neutral"]],
+ ["Health & care",[1,0,2,-1,0,-1],["Telemedicine and care technology","Neutral","An ageing population guarantees volume","Heavy regulation","Neutral","State reimbursement caps pricing power"]],
+ ["Automotive",[-2,-2,-1,-1,-1,-1],["Cars as software products, a capability the OEMs historically outsourced","Costly ICE→EV platform shift; Chinese cost advantage","Ageing, expensive workforce","Permitting slows factory conversions","Weak charging network dampens EV demand","EV subsidy ended; weak domestic demand"]],
+ ["Chemicals",[0,-2,-1,-1,-1,0],["Neutral","Energy-intensive processes, and cheap Russian gas is gone","Skilled-labour pressure","Regulatory load","Energy infrastructure still in transition","Neutral"]],
+ ["Construction & RE",[0,-1,-2,-2,0,-2],["Neutral","Retrofit and efficiency rules add cost","Skilled trades ageing out of the workforce","Permitting is notoriously slow","Neutral","The rate shock broke the financing model"]],
+ ["Physical retail",[-2,0,-1,0,0,0],["E-commerce (Zalando, Amazon) takes the margin","Neutral","Staff shortages","Neutral","Neutral","Neutral"]]
+];
+const cls=v=>v===2?"s2":v===1?"s1":v===0?"s0":v===-1?"sm1":"sm2";
+const fmt=v=>v>0?"+"+v:v<0?"−"+Math.abs(v):"0";
+const rows=M.map(r=>({...{n:r[0],s:r[1],w:r[2]},net:r[1].reduce((a,b)=>a+b,0)})).sort((a,b)=>b.net-a.net);
+let h="<tr><th>Sector</th>"+drivers.map(d=>`<th>${d}</th>`).join("")+"<th>Net</th></tr>";
+rows.forEach((r,ri)=>{h+=`<tr><td>${r.n}</td>`+r.s.map((v,i)=>`<td><span class="c ${cls(v)}" data-r="${ri}" data-i="${i}">${fmt(v)}</span></td>`).join("")+`<td class="net" style="color:${r.net>0?'var(--pos2)':'var(--neg2)'}">${fmt(r.net)}</td></tr>`});
+document.getElementById("mtx").innerHTML=h;
+document.getElementById("mtx").addEventListener("click",e=>{const c=e.target.closest(".c");if(!c)return;const r=rows[c.dataset.r],i=+c.dataset.i;
+ document.getElementById("detail").innerHTML=`<b>${r.n} × ${drivers[i]} (${fmt(r.s[i])}):</b> ${r.w[i]}`;});
+const peers=[["Insurance & reinsurance",5,4,3],["Development banking",5,2,3],["Banking-system stability",4,3,4],["Capital-markets depth",2,5,5],["Venture capital",2,4,5],["Asset management",3,4,5]];
+document.getElementById("peers").innerHTML='<div class="legend" style="margin-bottom:6px"><span><i class="c" style="background:#12658f;width:14px;height:14px"></i>Germany</span><span><i class="c" style="background:#9fb3c0;width:14px;height:14px"></i>UK</span><span><i class="c" style="background:#d98a1f;width:14px;height:14px"></i>US</span></div>'+
+ peers.map(p=>`<div class="bar"><div class="lbl">${p[0]}</div><div class="trk">${[1,2,3].map(k=>`<div style="flex:1;display:flex;gap:2px">${[1,2,3,4,5].map(n=>`<div class="seg" style="background:${n<=p[k]?['#12658f','#9fb3c0','#d98a1f'][k-1]:'#f0f3f5'}"></div>`).join("")}</div>`).join("")}</div></div>`).join("");
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{document.querySelectorAll("nav button,.panel").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.getElementById(b.dataset.t).classList.add("active");window.scrollTo({top:document.querySelector("nav").offsetTop,behavior:"smooth"})});
+</script>
+</body>
+</html>

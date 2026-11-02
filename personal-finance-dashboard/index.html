@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personal Finance Dashboard: Cash Flow, Savings Rate & Compounding</title>
+<style>
+:root{--bg:#0e1116;--bg2:#161b22;--card:#12161c;--line:#262d36;--text:#e6edf3;--muted:#8b98a5;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+--blue:#378ADD;--green:#1D9E75;--red:#E24B4A;--amber:#EF9F27}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:28px 20px 48px}
+button,input,select{font:inherit;font-size:13px;color:var(--text);background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:8px 12px}
+button{cursor:pointer}button:hover{border-color:var(--blue)}
+.primary{background:var(--blue);border-color:var(--blue);color:#fff}
+.head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:10px;margin-bottom:22px}
+.eyebrow{font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin:0}
+h1{font-size:24px;font-weight:600;margin:4px 0 0}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:16px}
+.stat{background:var(--bg2);border-radius:10px;padding:14px 16px}
+.label{font-size:12px;color:var(--muted);margin:0 0 6px;text-transform:uppercase;letter-spacing:.06em}
+.val{font-size:22px;font-weight:600;margin:0;font-family:var(--mono)}
+.delta{font-size:12px;margin:4px 0 0;color:var(--muted)}
+.row{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:16px;margin-bottom:16px}
+@media(max-width:760px){.row{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.title{font-size:12px;font-weight:600;color:var(--muted);margin:0 0 12px;text-transform:uppercase;letter-spacing:.06em}
+.tx{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.tx:last-child{border-bottom:0}
+.dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.desc{flex:1;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.date{font-size:12px;color:var(--muted)}
+.amt{font-size:14px;font-weight:600;font-family:var(--mono)}
+.del{background:none;border:0;color:var(--muted);padding:2px 6px;opacity:.6}.del:hover{opacity:1;color:var(--red)}
+.form{background:var(--bg2);border-radius:10px;padding:12px;margin:10px 0;display:none}.form.open{display:block}
+.frow{display:flex;gap:8px;flex-wrap:wrap}.frow>*{flex:1;min-width:110px}.frow button{flex:0 0 auto}
+.legend{display:flex;flex-direction:column;gap:6px;margin-top:12px}
+.li{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}.sq{width:10px;height:10px;border-radius:2px}
+.sliders{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:14px}
+.sl label{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:6px}.sl label b{color:var(--text);font-family:var(--mono)}
+input[type=range]{width:100%;padding:0;accent-color:var(--blue);background:none;border:0}
+.fv{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:14px}
+.note{font-size:12px;color:var(--muted);margin-top:10px}
+footer{color:var(--muted);font-size:12px;text-align:center;margin-top:28px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <div><p class="eyebrow">Personal finance · cash flow & compounding</p><h1>Finance Overview</h1></div>
+    <div style="display:flex;gap:8px">
+      <button onclick="exportCSV()">Export CSV</button>
+      <button onclick="resetData()">Reset sample</button>
+      <button class="primary" onclick="toggleForm()">+ Add transaction</button>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><p class="label">Net worth</p><p class="val" id="netWorth">—</p><p class="delta" id="nwDelta">this month</p></div>
+    <div class="stat"><p class="label">Income</p><p class="val" id="inc">—</p><p class="delta">this month</p></div>
+    <div class="stat"><p class="label">Expenses</p><p class="val" id="exp">—</p><p class="delta">this month</p></div>
+    <div class="stat"><p class="label">Savings rate</p><p class="val" id="rate">—</p><p class="delta" id="rateNote">of income</p></div>
+  </div>
+
+  <div class="row">
+    <div class="card"><p class="title">Net worth trend</p><div style="position:relative;height:220px"><canvas id="line" aria-label="Net worth over six months"></canvas></div></div>
+    <div class="card"><p class="title">Spending breakdown</p><div style="position:relative;height:150px"><canvas id="donut" aria-label="Spending by category"></canvas></div><div class="legend" id="legend"></div></div>
+  </div>
+
+  <div class="card" style="margin-bottom:16px">
+    <p class="title">Compounding projection: what this month's savings rate is worth</p>
+    <div class="sliders">
+      <div class="sl"><label>Expected annual return <b id="rV">6.0%</b></label><input type="range" id="r" min="0" max="10" step="0.5" value="6"></div>
+      <div class="sl"><label>Horizon (years) <b id="yV">20</b></label><input type="range" id="y" min="1" max="40" step="1" value="20"></div>
+      <div class="sl"><label>Inflation <b id="iV">2.0%</b></label><input type="range" id="i" min="0" max="5" step="0.5" value="2"></div>
+    </div>
+    <div style="position:relative;height:220px"><canvas id="proj" aria-label="Projected net worth"></canvas></div>
+    <div class="fv">
+      <div class="stat"><p class="label">Monthly saving</p><p class="val" id="pm">—</p></div>
+      <div class="stat"><p class="label">Projected value (nominal)</p><p class="val" id="fvN">—</p></div>
+      <div class="stat"><p class="label">In today's money (real)</p><p class="val" id="fvR">—</p></div>
+      <div class="stat"><p class="label">Of which: growth</p><p class="val" id="gr">—</p></div>
+    </div>
+    <p class="note">FV = NW₀·(1+r/12)<sup>12n</sup> + PMT·[(1+r/12)<sup>12n</sup> − 1]/(r/12), with monthly compounding. Real value is deflated at the inflation rate. Illustrative only, not investment advice.</p>
+  </div>
+
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center"><p class="title" style="margin:0">Transactions</p><span class="date" id="count"></span></div>
+    <div class="form" id="form">
+      <div class="frow" style="margin-bottom:8px"><input id="fDesc" placeholder="Description"><input id="fAmt" type="number" placeholder="Amount (€)"></div>
+      <div class="frow">
+        <select id="fCat"><option>Income</option><option>Housing</option><option selected>Food</option><option>Transport</option><option>Entertainment</option><option>Health</option><option>Other</option></select>
+        <input id="fDate" type="date">
+        <button class="primary" onclick="addTx()">Save</button><button onclick="toggleForm()">Cancel</button>
+      </div>
+    </div>
+    <div id="list"></div>
+  </div>
+  <footer>Sample data for illustration. Your entries are saved in this browser only. · Built by Kartik Tyagi</footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const COL={Income:'#1D9E75',Housing:'#378ADD',Food:'#EF9F27',Transport:'#3DB88A',Entertainment:'#D4537E',Health:'#7F77DD',Other:'#888780'};
+const HISTORY=[10200,10580,10340,10920,11500], START_NW=HISTORY[HISTORY.length-1];
+const SAMPLE=[
+ {id:1,desc:'Monthly salary',amount:4200,cat:'Income',date:'2026-05-01'},
+ {id:2,desc:'Freelance project',amount:800,cat:'Income',date:'2026-05-03'},
+ {id:3,desc:'Rent',amount:-1400,cat:'Housing',date:'2026-05-01'},
+ {id:4,desc:'Groceries',amount:-87,cat:'Food',date:'2026-05-02'},
+ {id:5,desc:'Public transport pass',amount:-92,cat:'Transport',date:'2026-05-02'},
+ {id:6,desc:'Streaming subscriptions',amount:-23,cat:'Entertainment',date:'2026-05-03'},
+ {id:7,desc:'Pharmacy',amount:-34,cat:'Health',date:'2026-05-04'},
+ {id:8,desc:'Restaurant',amount:-58,cat:'Food',date:'2026-05-05'},
+ {id:9,desc:'Electricity bill',amount:-76,cat:'Housing',date:'2026-05-06'},
+ {id:10,desc:'Coffee & bakery',amount:-31,cat:'Food',date:'2026-05-07'},
+ {id:11,desc:'Mobile & internet',amount:-55,cat:'Other',date:'2026-05-08'},
+ {id:12,desc:'Household insurance',amount:-22,cat:'Housing',date:'2026-05-08'},
+ {id:13,desc:'Gym membership',amount:-35,cat:'Health',date:'2026-05-10'},
+ {id:14,desc:'Groceries',amount:-95,cat:'Food',date:'2026-05-11'},
+ {id:15,desc:'Car-sharing',amount:-48,cat:'Transport',date:'2026-05-13'},
+ {id:16,desc:'Clothing',amount:-140,cat:'Other',date:'2026-05-15'},
+ {id:17,desc:'Weekend trip: train & hotel',amount:-420,cat:'Entertainment',date:'2026-05-17'},
+ {id:18,desc:'Groceries',amount:-110,cat:'Food',date:'2026-05-19'},
+ {id:19,desc:'Headphones',amount:-250,cat:'Other',date:'2026-05-22'},
+ {id:20,desc:'Concert tickets',amount:-85,cat:'Entertainment',date:'2026-05-24'},
+ {id:21,desc:'Dinner out',amount:-72,cat:'Food',date:'2026-05-27'}];
+const KEY='pfd-transactions';
+let txs; try{txs=JSON.parse(localStorage.getItem(KEY))||SAMPLE.slice()}catch(e){txs=SAMPLE.slice()}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(txs))}catch(e){}};
+const fmt=v=>(v<0?'-':'')+'€'+Math.abs(Math.round(v)).toLocaleString('de-DE');
+const $=id=>document.getElementById(id);
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+$('fDate').value=new Date().toISOString().slice(0,10);
+Chart.defaults.color='#8b98a5';Chart.defaults.borderColor='rgba(255,255,255,.07)';Chart.defaults.font.size=11;
+let line,donut,proj;
+
+function totals(){const inc=txs.filter(t=>t.amount>0).reduce((s,t)=>s+t.amount,0),exp=txs.filter(t=>t.amount<0).reduce((s,t)=>s+t.amount,0);return{inc,exp,net:inc+exp}}
+
+function render(){
+  const {inc,exp,net}=totals(), rate=inc>0?Math.round(net/inc*100):0;
+  $('inc').textContent=fmt(inc);$('exp').textContent=fmt(exp);$('netWorth').textContent=fmt(START_NW+net);
+  $('nwDelta').textContent=(net>=0?'+':'')+fmt(net)+' this month';$('nwDelta').style.color=net>=0?'var(--green)':'var(--red)';
+  $('rate').textContent=rate+'%';$('rateNote').textContent=rate>=0?'of income saved':'overspent';
+  $('rateNote').style.color=rate>=20?'var(--green)':rate>=0?'var(--amber)':'var(--red)';
+  $('count').textContent=txs.length+' entries';
+  $('list').innerHTML=[...txs].sort((a,b)=>b.date.localeCompare(a.date)).map(t=>`<div class="tx"><div class="dot" style="background:${COL[t.cat]||'#888'}"></div><span class="desc">${esc(t.desc)}</span><span class="date">${new Date(t.date).toLocaleDateString('en-GB',{day:'numeric',month:'short'})}</span><span class="amt" style="color:${t.amount>0?'var(--green)':'var(--red)'}">${fmt(t.amount)}</span><button class="del" onclick="delTx(${t.id})" aria-label="Delete">✕</button></div>`).join('');
+  const lineData=[...HISTORY,START_NW+net];
+  if(!line){line=new Chart($('line'),{type:'line',data:{labels:['Dec','Jan','Feb','Mar','Apr','May'],datasets:[{data:lineData,borderColor:'#378ADD',backgroundColor:'rgba(55,138,221,.12)',fill:true,tension:.4,pointRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+fmt(c.parsed.y)}}},scales:{y:{ticks:{callback:v=>'€'+(v/1000).toFixed(1)+'k'}}}}})}else{line.data.datasets[0].data=lineData;line.update()}
+  const cats={};txs.filter(t=>t.amount<0).forEach(t=>cats[t.cat]=(cats[t.cat]||0)-t.amount);
+  const L=Object.keys(cats),D=L.map(l=>cats[l]),C=L.map(l=>COL[l]),tot=D.reduce((a,b)=>a+b,0)||1;
+  $('legend').innerHTML=L.map((l,i)=>`<div class="li"><div class="sq" style="background:${C[i]}"></div><span style="flex:1">${l}</span><span style="font-family:var(--mono)">${fmt(D[i])} · ${Math.round(D[i]/tot*100)}%</span></div>`).join('');
+  if(!donut){donut=new Chart($('donut'),{type:'doughnut',data:{labels:L,datasets:[{data:D,backgroundColor:C,borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,cutout:'68%',plugins:{legend:{display:false}}}})}else{Object.assign(donut.data,{labels:L});Object.assign(donut.data.datasets[0],{data:D,backgroundColor:C});donut.update()}
+  projection();
+}
+
+function projection(){
+  const r=+$('r').value/100,n=+$('y').value,inf=+$('i').value/100,{net}=totals(),pmt=Math.max(net,0),nw0=START_NW+net;
+  $('rV').textContent=(r*100).toFixed(1)+'%';$('yV').textContent=n;$('iV').textContent=(inf*100).toFixed(1)+'%';
+  const m=r/12,fvAt=k=>{const g=Math.pow(1+m,12*k);return nw0*g+(m?pmt*(g-1)/m:pmt*12*k)};
+  const yrs=[...Array(n+1).keys()],fv=yrs.map(fvAt),contrib=yrs.map(k=>nw0+pmt*12*k);
+  const fvN=fv[n],fvR=fvN/Math.pow(1+inf,n);
+  $('pm').textContent=fmt(pmt);$('fvN').textContent=fmt(fvN);$('fvR').textContent=fmt(fvR);$('gr').textContent=fmt(fvN-contrib[n]);
+  const ds=[{label:'Projected value',data:fv,borderColor:'#1D9E75',backgroundColor:'rgba(29,158,117,.12)',fill:true,tension:.3,pointRadius:0},{label:'Contributions only',data:contrib,borderColor:'#8b98a5',borderDash:[5,4],pointRadius:0}];
+  if(!proj){proj=new Chart($('proj'),{type:'line',data:{labels:yrs.map(k=>'Y'+k),datasets:ds},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{boxWidth:12}},tooltip:{callbacks:{label:c=>' '+c.dataset.label+': '+fmt(c.parsed.y)}}},scales:{y:{ticks:{callback:v=>'€'+Math.round(v/1000)+'k'}}}}})}
+  else{proj.data.labels=yrs.map(k=>'Y'+k);proj.data.datasets[0].data=fv;proj.data.datasets[1].data=contrib;proj.update()}
+}
+['r','y','i'].forEach(id=>$(id).addEventListener('input',projection));
+
+function toggleForm(){$('form').classList.toggle('open');if($('form').classList.contains('open'))$('fDesc').focus()}
+function addTx(){const desc=$('fDesc').value.trim(),a=parseFloat($('fAmt').value),cat=$('fCat').value,date=$('fDate').value;if(!desc||isNaN(a)||!date)return;
+  txs.push({id:Math.max(0,...txs.map(t=>t.id))+1,desc,amount:cat==='Income'?Math.abs(a):-Math.abs(a),cat,date});$('fDesc').value='';$('fAmt').value='';toggleForm();save();render()}
+function delTx(id){txs=txs.filter(t=>t.id!==id);save();render()}
+function resetData(){txs=SAMPLE.slice();save();render()}
+function exportCSV(){const rows=[['date','description','category','amount_eur'],...txs.map(t=>[t.date,'"'+t.desc.replace(/"/g,'""')+'"',t.cat,t.amount])];
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([rows.map(r=>r.join(',')).join('\n')],{type:'text/csv'}));a.download='transactions.csv';a.click()}
+render();
+</script>
+</body>
+</html>
